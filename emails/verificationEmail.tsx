@@ -63,7 +63,7 @@ const VerificationEmail = ({ username, otp }: VerificationEmailProps) => {
                     </Text>
 
                     <Text style={{ fontSize: '14px', color: '#6b7280', marginTop: '12px' }}>
-                        This code will expire in 10 minutes. If you didn’t request this, you can safely ignore this email.
+                        This code will expire in 1 hour. If you didn’t request this, you can safely ignore this email.
                     </Text>
 
                     <Text style={{ fontSize: '14px', color: '#6b7280', marginTop: '24px' }}>
