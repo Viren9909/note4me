@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
 
 export async function POST(request: Request) {
+
     await connectDatabase()
     try {
         const { username, email, password } = await request.json();
@@ -31,7 +32,7 @@ export async function POST(request: Request) {
                 await existingUserWithSameEmail.save()
                 return Response.json({
                     success: true,
-                    message: ""
+                    message: "User account already exist. Please verify your Email to login."
                 }, { status: 200 })
             }
         } else {
@@ -64,7 +65,7 @@ export async function POST(request: Request) {
 
         return Response.json({
             success: true,
-            message: "User registerd successfuly. Please verify your self."
+            message: "User registerd successfuly. Please verify your Email."
         })
 
     } catch (error) {
