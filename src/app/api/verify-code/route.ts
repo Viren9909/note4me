@@ -26,7 +26,7 @@ export async function POST(request: Request) {
             await user.save()
             return Response.json({
                 success: true,
-                message: "User verified successful"
+                message: "User verified successfull"
             }, { status: 200 })
         } else if (!isNotExpireCode) {
             return Response.json({

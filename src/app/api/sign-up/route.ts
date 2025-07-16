@@ -13,7 +13,7 @@ export async function POST(request: Request) {
             return Response.json({
                 success: false,
                 message: "Username already taken."
-            }, { status: 400 })
+            }, { status: 409 })
         }
         const existingUserWithSameEmail = await UserModel.findOne({ email })
         const verifyCode = Math.floor(100000 + Math.random() * 900000).toString()
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
                 return Response.json({
                     success: false,
                     message: "User already exist with same email."
-                }, { status: 400 })
+                }, { status: 409 })
             } else {
                 const hashedPassword = await bcrypt.hash(password, 10)
                 existingUserWithSameEmail.password = hashedPassword
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
 
         return Response.json({
             success: true,
-            message: "User registerd successfuly. Please verify your Email."
+            message: "User registerd successfully. Please verify your Email."
         })
 
     } catch (error) {
