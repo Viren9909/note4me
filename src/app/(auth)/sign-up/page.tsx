@@ -94,6 +94,12 @@ const page = () => {
 
             } catch (error) {
                 const axiosError = error as AxiosError<ApiResponse>
+                let errorMessage = axiosError.response?.data.message
+                toast.warning("Error", {
+                    description: errorMessage,
+                    duration: 3000,
+                    position: "bottom-right"
+                })
                 setUserNameMessage(axiosError.response?.data.message ?? "Error while chicking username")
                 setIsUsernameAvailable(false)
             } finally {
@@ -108,8 +114,10 @@ const page = () => {
         <div className='flex items-center justify-center min-h-screen'>
             <div className='w-full max-w-md p-8 space-y-8 shadow-md'>
                 <div className='text-center'>
-                    <h1 className='text-4xl font-extrabold tracking-tight lg:text-5xl mb-6'>Join Note4Me</h1>
-                    <p className='mb-4'>Signup to start your anonymous Adventure</p>
+                    <div className='text-4xl font-extrabold tracking-tight lg:text-5xl mb-6'>
+                        <div>Join Note<span className='text-primary'>4</span>Me</div>
+                    </div>
+                    <p className='mb-4'>Signup to start your Anonymous Adventure</p>
                 </div>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
@@ -140,8 +148,6 @@ const page = () => {
                                             </p>
                                         </div>
                                     )}
-
-                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
@@ -155,7 +161,6 @@ const page = () => {
                                     <FormControl>
                                         <Input type='email' placeholder="email" {...field} />
                                     </FormControl>
-                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
@@ -169,7 +174,6 @@ const page = () => {
                                     <FormControl>
                                         <Input type='password' placeholder="password" {...field} />
                                     </FormControl>
-                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
