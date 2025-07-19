@@ -35,7 +35,7 @@ export async function GET(request: Request) {
             return Response.json({
                 success: false,
                 message: "Username already taken"
-            }, { status: 409 })
+            }, { status: 400 })
         }
         return Response.json({
             success: true,

@@ -1,21 +1,24 @@
 "use client"
 
-import { signIn, useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 export default function Home() {
-  const { data: session, status } = useSession()
-
-  if (status === "authenticated") {
-    return (
-      <div>
-        User Authenticated
-      </div>
-    )
+  
+  const handleClick = () => {
+    toast("This is a toast message!", {
+      description: "You can customize the toast message.",
+      duration: 5000,
+      position: "bottom-right",
+      style: {
+        backgroundColor: "#333",
+        color: "#fff",
+      },
+    });
   }
 
   return (
     <div>
-      <button className="bg-white text-xl p-1 rounded text-black m-4" onClick={() => signIn()}>Sign in</button>
+      <button className="bg-white text-xl p-1 rounded text-black m-4" onClick={handleClick}>Sign in</button>
     </div>
   );
 }
