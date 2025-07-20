@@ -7,18 +7,18 @@ export async function middleware(request: NextRequest) {
     const token = await getToken({ req: request });
     const url = request.nextUrl
 
-    if (token && (
-        url.pathname.startsWith('/sign-in') ||
+    const isAuthPage = url.pathname.startsWith('/sign-in') ||
         url.pathname.startsWith('/sign-up') ||
         url.pathname.startsWith('/verify') ||
-        url.pathname.startsWith('/')
-    )) {
+        url.pathname === '/'
+
+    if (token && isAuthPage) {
         return NextResponse.redirect(new URL('/dashboard', request.url))
     }
-    
+
     if (!token && url.pathname.startsWith('/dashboard')) {
         return NextResponse.redirect(new URL('/sign-in', request.url))
-        
+
     }
 
     return NextResponse.next()
