@@ -50,6 +50,10 @@ const page = () => {
 				description: axiosError.response?.data.message || "An error occurred while fetching message settings.",
 				duration: 3000,
 				position: "bottom-right",
+				style: {
+					backgroundColor: "red",
+					color: 'white',
+				}
 			});
 
 		} finally {
@@ -72,6 +76,10 @@ const page = () => {
 						description: "Messages have been refreshed successfully.",
 						duration: 3000,
 						position: "bottom-right",
+						style: {
+							backgroundColor: "oklch(0.795 0.184 86.047)",
+							color: 'oklch(0.421 0.095 57.708)',
+						},
 					});
 				}
 			}
@@ -83,6 +91,10 @@ const page = () => {
 				description: axiosError.response?.data.message || "An error occurred while fetching messages.",
 				duration: 3000,
 				position: "bottom-right",
+				style: {
+					backgroundColor: "red",
+					color: 'white',
+				}
 			});
 		} finally {
 			setIsLoading(false);
@@ -111,6 +123,10 @@ const page = () => {
 					description: `Message acceptance has been ${!acceptMessages ? "enabled" : "disabled"} successfully.`,
 					duration: 3000,
 					position: "bottom-right",
+					style: {
+						backgroundColor: "oklch(0.795 0.184 86.047)",
+						color: 'oklch(0.421 0.095 57.708)',
+					},
 				});
 			}
 			fetchMessages(true);
@@ -122,6 +138,10 @@ const page = () => {
 				description: axiosError.response?.data.message || "An error occurred while updating message settings.",
 				duration: 3000,
 				position: "bottom-right",
+				style: {
+					backgroundColor: "red",
+					color: 'white',
+				}
 			});
 
 		} finally {
@@ -153,6 +173,10 @@ const page = () => {
 			description: "Profile URL has been copied to the clipboard.",
 			duration: 3000,
 			position: "bottom-right",
+			style: {
+				backgroundColor: "oklch(0.795 0.184 86.047)",
+				color: 'oklch(0.421 0.095 57.708)',
+			},
 		});
 	}
 

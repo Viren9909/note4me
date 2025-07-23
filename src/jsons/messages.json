@@ -1,0 +1,52 @@
+{
+    "messages":[
+        {
+            "user":"john_doe",
+            "content":"Hello, this is John Doe!",
+            "createdAt":"2023-10-01T12:00:00Z",
+            "id":"1"
+        },
+        {
+            "user":"anonymous",
+            "content":"Do you like to Swim?",
+            "createdAt":"2023-10-01T12:05:00Z",
+            "id":"2"
+        },
+        {
+            "user":"Natty",
+            "content":"Yes, I love swimming!",
+            "createdAt":"2023-10-01T12:10:00Z",
+            "id":"3"
+        },
+        {
+            "user":"Gray",
+            "content":"What are your plans for the weekend?",
+            "createdAt":"2023-10-01T12:15:00Z",
+            "id":"4"
+        },
+        {
+            "user":"Colie",
+            "content":"Do you like trips?",
+            "createdAt":"2023-10-01T12:20:00Z",
+            "id":"5"
+        },
+        {
+            "user":"Samantha",
+            "content":"Yes, I enjoy traveling and exploring new places.",
+            "createdAt":"2023-10-01T12:25:00Z",
+            "id":"6"
+        },
+        {
+            "user":"Alex",
+            "content":"What is your favorite food?",
+            "createdAt":"2023-10-01T12:30:00Z",
+            "id":"7"
+        },
+        {
+            "user":"Jamie",
+            "content":"I love Italian cuisine, especially pasta!",
+            "createdAt":"2023-10-01T12:35:00Z",
+            "id":"8"
+        }
+    ]
+}
