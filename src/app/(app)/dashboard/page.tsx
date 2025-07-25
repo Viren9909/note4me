@@ -24,6 +24,7 @@ const page = () => {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSwitchLoading, setIsSwitchLoading] = useState(false);
+	const [isAcceptingMessage, setIsAcceptingMessage] = useState(false);
 
 	const handleDeleteMessage = (messageId: string) => {
 		setMessages(messages.filter((message) => message._id !== messageId));
@@ -42,6 +43,7 @@ const page = () => {
 			const response = await axios.get<ApiResponse>('/api/accept-messages');
 			if (response.data.success) {
 				setValue("acceptMessage", response.data?.isAcceptingMessage as boolean);
+				setIsAcceptingMessage(response.data?.isAcceptingMessage as boolean);
 			}
 		} catch (error) {
 			console.error(error);
@@ -119,6 +121,7 @@ const page = () => {
 			});
 			if (response.data.success) {
 				setValue("acceptMessage", !acceptMessages);
+				setIsAcceptingMessage(!acceptMessages);
 				toast.success("Success", {
 					description: `Message acceptance has been ${!acceptMessages ? "enabled" : "disabled"} successfully.`,
 					duration: 3000,
@@ -152,7 +155,7 @@ const page = () => {
 	if (status === 'loading') {
 		return (
 			<div className='flex items-center justify-center h-screen'>
-				<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
+				<Loader2 className='animate-spin h-32 w-32' />
 			</div>
 		);
 
@@ -181,8 +184,8 @@ const page = () => {
 	}
 
 	return (
-		<div className='p-8'>
-			<div className='3min-h-screen'>
+		<div className='p-8 min-h-screen'>
+			<div>
 				<h1 className='text-4xl font-bold'>User Dashboard</h1>
 			</div>
 			<Label className='text-xl font-semibold mt-4'>Your unique profile URL:</Label>
@@ -196,7 +199,6 @@ const page = () => {
 				<Button onClick={handleCopyProfileUrl}> <CopyIcon /> Copy</Button>
 			</div>
 			<div className='mt-4 flex items-center gap-2'>
-				<Label className='ml-2 text-xl font-semibold'>Accept Messages</Label>
 				<Switch
 					{...register('acceptMessage')}
 					checked={acceptMessages}
@@ -206,6 +208,7 @@ const page = () => {
 						height: '20px',
 					}}
 				/>
+				<Label className='ml-2 text-xl font-semibold'>Accept Messages : {isAcceptingMessage ? "On" : "Off"}</Label>
 			</div>
 
 			<Separator className='my-4' />
