@@ -27,6 +27,7 @@ const page = () => {
 	const [isAcceptingMessage, setIsAcceptingMessage] = useState(false);
 
 	const handleDeleteMessage = (messageId: string) => {
+		// console.log(messages)
 		setMessages(messages.filter((message) => message._id !== messageId));
 	}
 

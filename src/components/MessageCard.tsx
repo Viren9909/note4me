@@ -19,9 +19,10 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button";
 import { Message } from "@/model/User";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { Trash2, X } from "lucide-react";
+import { toast } from "sonner";
 
 type MessageCardProps = {
     message?: Message
@@ -31,9 +32,32 @@ type MessageCardProps = {
 const MessageCard = ({ message, onDelete }: MessageCardProps) => {
 
     const handleDeleteConfirm = async () => {
-        const response = await axios.delete<ApiResponse>(`/api/delete-message/${message?.id}`);
-        if (response.data.success && onDelete) {
-            onDelete(message?.id);
+        try {
+            const response = await axios.delete<ApiResponse>(`/api/delete-message/${message?._id}`);
+            if (response.data.success && onDelete) {
+                onDelete(message?.id || message?._id);
+                toast.success("Message deleted successfully", {
+                    description: response.data.message || "Message deleted successfully",
+                    duration: 3000,
+                    position: "bottom-right",
+                    style: {
+                        backgroundColor: "oklch(0.795 0.184 86.047)",
+                        color: 'oklch(0.421 0.095 57.708)',
+                    }
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            const axiosError = error as AxiosError<ApiResponse>;
+            toast.error("Error deleting message", {
+                description: axiosError.response?.data.message || "An error occurred while deleting the message.",
+                duration: 3000,
+                position: "bottom-right",
+                style: {
+                    backgroundColor: "red",
+                    color: 'white',
+                }
+            });
         }
     }
 
